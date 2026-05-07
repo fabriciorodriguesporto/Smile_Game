@@ -1,37 +1,93 @@
-.invisivel{
-    display:none;
-  }
-  .visivel{
-    display:inline;
-  }
-  .inicial {
-    text-align: center;
-    font-size: 100px;
-    background-color: lightgrey;
-    width: 150px;
-    height: 200px;
-    border: 15px solid green;
-    padding: 10px;
-    margin: 20px;
-  }
-  .acertou {
-    text-align: center;
-    color: yellow;
-    background-color: LawnGreen;
-    width: 150px;
-    height: 200px;
-    border: 15px solid yellow;
-    padding: 10px;
-    margin: 20px;
-  }
-  .errou {
-    text-align: center;
-    font-size: 100px;
-    color: white;
-    background-color: red;
-    width: 150px;
-    height: 200px;
-    border: 15px solid black;
-    padding: 10px;
-    margin: 20px;
-  }
+/* ===== TEXTO GLOBAL BRANCO ===== */
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  background: linear-gradient(135deg, #00A3E0, #000000, #ffffff);
+  background-attachment: fixed;
+
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+/* títulos e textos */
+h1, p {
+  color: white;
+}
+
+/* ===== CARTA ===== */
+.carta {
+  width: 150px;
+  height: 200px;
+  margin: 15px;
+
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 70px;
+  color: white; /* garante branco */
+
+  background: linear-gradient(135deg, #000000, #1a1a1a);
+
+  border: 3px solid #00A3E0;
+
+  box-shadow: 0 0 15px #00A3E0;
+
+  position: relative;
+  overflow: hidden;
+
+  cursor: pointer;
+}
+
+/* número dentro da carta */
+.carta span {
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+/* imagem do smile */
+.carta img {
+  position: relative;
+  z-index: 2;
+}
+
+/* LISTRAS */
+.carta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: repeating-linear-gradient(
+    90deg,
+    #00A3E0,
+    #00A3E0 10px,
+    #000000 10px,
+    #000000 20px
+  );
+
+  opacity: 0.2;
+  transform: rotate(-25deg);
+
+  z-index: 0;
+}
+
+/* ACERTO */
+.acertou {
+  border-color: #00ff88;
+  box-shadow: 0 0 20px #00ff88;
+}
+
+/* ERRO */
+.errou {
+  border-color: #ff0033;
+  box-shadow: 0 0 20px #ff0033;
+}
+
+/* BOTÕES BRANCOS */
+button {
+  color: white !important;
+}
