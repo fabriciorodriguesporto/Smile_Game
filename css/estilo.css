@@ -1,93 +1,111 @@
-/* ===== TEXTO GLOBAL BRANCO ===== */
+/* ===== TEXTO GLOBAL E FUNDO DINÂMICO ===== */
 body {
   margin: 0;
   min-height: 100vh;
-
-  background: linear-gradient(135deg, #00A3E0, #000000, #ffffff);
+  /* Degradê com cores mais saturadas e profundas */
+  background: radial-gradient(circle at center, #001a2e 0%, #000000 100%);
   background-attachment: fixed;
-
-  font-family: Arial, sans-serif;
-  color: white;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* títulos e textos */
-h1, p {
-  color: white;
+h1 {
+  color: #00e5ff;
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-/* ===== CARTA ===== */
+/* ===== CARTA (DESIGN NEON) ===== */
 .carta {
   width: 150px;
   height: 200px;
   margin: 15px;
-
-  border-radius: 18px;
-
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  font-size: 70px;
-  color: white; /* garante branco */
-
-  background: linear-gradient(135deg, #000000, #1a1a1a);
-
-  border: 3px solid #00A3E0;
-
-  box-shadow: 0 0 15px #00A3E0;
+  font-size: 75px;
+  font-weight: bold;
+  
+  /* Fundo mais escuro para destacar o brilho */
+  background: #0a0a0a;
+  
+  /* Borda neon ciano */
+  border: 3px solid #00f2ff;
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.4), 
+              inset 0 0 15px rgba(0, 242, 255, 0.2);
 
   position: relative;
   overflow: hidden;
-
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-/* número dentro da carta */
-.carta span {
-  color: white;
+/* Efeito Hover para dar vida */
+.carta:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 242, 255, 0.8);
+}
+
+/* Conteúdo da carta com brilho próprio */
+.carta span, .carta img {
   position: relative;
   z-index: 2;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
 }
 
-/* imagem do smile */
-.carta img {
-  position: relative;
-  z-index: 2;
-}
-
-/* LISTRAS */
+/* LISTRAS (Agora com cores mais vivas e Overlay) */
 .carta::before {
   content: "";
   position: absolute;
-  inset: 0;
-
+  inset: -50%; /* Aumentado para cobrir a rotação */
   background: repeating-linear-gradient(
-    90deg,
-    #00A3E0,
-    #00A3E0 10px,
-    #000000 10px,
-    #000000 20px
+    45deg,
+    transparent,
+    transparent 15px,
+    rgba(0, 242, 255, 0.1) 15px,
+    rgba(0, 242, 255, 0.1) 30px
   );
-
-  opacity: 0.2;
-  transform: rotate(-25deg);
-
-  z-index: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* ACERTO */
+/* STATUS: ACERTO (Verde Esmeralda Neon) */
 .acertou {
-  border-color: #00ff88;
-  box-shadow: 0 0 20px #00ff88;
+  border-color: #00ffaa !important;
+  box-shadow: 0 0 40px #00ffaa, inset 0 0 20px #00ffaa !important;
+  color: #00ffaa !important;
 }
 
-/* ERRO */
+/* STATUS: ERRO (Vermelho Elétrico) */
 .errou {
-  border-color: #ff0033;
-  box-shadow: 0 0 20px #ff0033;
+  border-color: #ff0055 !important;
+  box-shadow: 0 0 40px #ff0055, inset 0 0 20px #ff0055 !important;
+  color: #ff0055 !important;
 }
 
-/* BOTÕES BRANCOS */
+/* BOTÕES ESTILIZADOS */
 button {
-  color: white !important;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #00f2ff;
+  color: #000 !important; /* Texto preto para contraste no botão vibrante */
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ffffff;
+  box-shadow: 0 0 35px #00f2ff;
+  transform: scale(1.1);
 }
