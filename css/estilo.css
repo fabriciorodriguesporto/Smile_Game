@@ -6,7 +6,7 @@ body {
 
   background:
     linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
-    url('../img/fundo.jpg');
+    url('../img/fundo.jpeg');
 
   background-size: cover;
   background-position: center;
@@ -15,8 +15,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  overflow-x: hidden;
 }
 
+/* camada escura */
 .overlay {
   position: fixed;
   inset: 0;
@@ -29,11 +32,13 @@ body {
   z-index: 0;
 }
 
+/* conteúdo */
 .conteudo {
   position: relative;
   z-index: 2;
 }
 
+/* título */
 h1 {
   color: #ffd000;
 
@@ -47,6 +52,7 @@ h1 {
     0 0 40px purple;
 }
 
+/* subtítulo */
 .subtitulo {
   color: white;
 
@@ -54,25 +60,34 @@ h1 {
 
   margin-bottom: 30px;
 
-  text-shadow: 0 0 10px black;
+  text-shadow:
+    0 0 10px black;
 }
 
+/* CARTA */
 .carta {
   width: 150px;
   height: 220px;
 
   margin: 15px;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
   cursor: pointer;
 
   position: relative;
+
   overflow: hidden;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.8s,
+    box-shadow 0.4s;
 
   background:
     linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
@@ -83,26 +98,64 @@ h1 {
 
   border: 4px solid #b87333;
 
-  transition: 0.3s;
-
   box-shadow:
     0 0 10px black,
-    0 0 20px rgba(255,140,0,0.3);
+    0 0 20px rgba(255,140,0,0.4);
 }
 
+/* HOVER */
 .carta:hover {
-  transform: scale(1.08) translateY(-8px);
+  transform:
+    scale(1.08)
+    translateY(-10px)
+    rotateY(8deg);
 
   box-shadow:
     0 0 20px orange,
     0 0 40px red,
-    0 0 60px purple;
+    0 0 70px purple;
 }
 
+/* brilho holográfico */
+.carta::before {
+  content: "";
+
+  position: absolute;
+  inset: -50%;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(255,255,255,0.25),
+      transparent
+    );
+
+  transform: rotate(25deg);
+
+  animation: brilho 3s linear infinite;
+}
+
+/* brilho interno */
+.carta::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: 12px;
+
+  box-shadow:
+    inset 0 0 20px rgba(255,255,255,0.15);
+
+  pointer-events: none;
+}
+
+/* símbolo ? */
 .carta span {
   color: white;
 
-  font-size: 55px;
+  font-size: 60px;
   font-weight: bold;
 
   text-shadow:
@@ -110,24 +163,57 @@ h1 {
     0 0 20px black;
 }
 
+/* carta revelada */
+.carta img {
+  position: relative;
+
+  z-index: 2;
+
+  animation:
+    invocar 0.7s ease;
+}
+
+/* acertou */
 .acertou {
+
+  animation:
+    explosao 0.8s ease,
+    pulse 2s infinite;
+
   border-color: #00ff99 !important;
 
   box-shadow:
     0 0 20px #00ff99,
     0 0 40px #00ff99,
-    0 0 60px #00ff99 !important;
+    0 0 80px #00ff99 !important;
 }
 
+/* errou */
 .errou {
+
+  animation: tremer 0.4s;
+
   border-color: #ff0044 !important;
 
   box-shadow:
     0 0 20px #ff0044,
-    0 0 40px #ff0044,
-    0 0 60px #ff0044 !important;
+    0 0 50px #ff0044 !important;
 }
 
+/* placar */
+.placar {
+  color: white;
+
+  font-size: 20px;
+
+  margin-top: 20px;
+
+  text-shadow:
+    0 0 10px black,
+    0 0 20px black;
+}
+
+/* botão */
 button {
   margin: 10px;
   padding: 12px 25px;
@@ -141,9 +227,11 @@ button {
   color: white;
 
   background:
-    linear-gradient(45deg,
-    #5f00ba,
-    #a100ff);
+    linear-gradient(
+      45deg,
+      #5f00ba,
+      #a100ff
+    );
 
   transition: 0.3s;
 
@@ -152,6 +240,7 @@ button {
     0 0 30px #5f00ba;
 }
 
+/* hover botão */
 button:hover {
   transform: scale(1.1);
 
@@ -160,18 +249,105 @@ button:hover {
     0 0 50px #7a00ff;
 }
 
-.placar {
-  color: white;
-
-  font-size: 20px;
-
-  margin-top: 20px;
-
-  text-shadow:
-    0 0 10px black,
-    0 0 20px black;
-}
-
+/* invisível */
 .invisivel {
   display: none;
+}
+
+/* brilho holográfico */
+@keyframes brilho {
+
+  0% {
+    transform:
+      translateX(-100%)
+      rotate(25deg);
+  }
+
+  100% {
+    transform:
+      translateX(200%)
+      rotate(25deg);
+  }
+}
+
+/* explosão */
+@keyframes explosao {
+
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* pulsando */
+@keyframes pulse {
+
+  0% {
+    box-shadow:
+      0 0 15px #00ff99;
+  }
+
+  50% {
+    box-shadow:
+      0 0 40px #00ff99,
+      0 0 80px #00ff99;
+  }
+
+  100% {
+    box-shadow:
+      0 0 15px #00ff99;
+  }
+}
+
+/* tremer */
+@keyframes tremer {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-8px);
+  }
+
+  50% {
+    transform: translateX(8px);
+  }
+
+  75% {
+    transform: translateX(-8px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* invocação */
+@keyframes invocar {
+
+  0% {
+    transform:
+      scale(0)
+      rotate(-360deg);
+
+    opacity: 0;
+  }
+
+  100% {
+    transform:
+      scale(1)
+      rotate(0deg);
+
+    opacity: 1;
+  }
 }
